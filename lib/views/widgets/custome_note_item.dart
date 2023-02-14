@@ -6,16 +6,16 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(margin: EdgeInsets.symmetric(vertical: 10),decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: Color(0xffFFCD79)),
+    return Container(margin: EdgeInsets.symmetric(vertical: 5),decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: Color(0xffFFCD79)),
       child: Padding(
         padding: const EdgeInsets.only(top:20,left: 10,bottom: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end,children: [
-          ListTile(title: Text("Flutter tipcs",style: TextStyle(fontSize: 26,color: Colors.black),),
+          ListTile(title: Text("Flutter tipcs",style: const TextStyle(fontSize: 26,color: Colors.black),),
             subtitle: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text("Build your career with ahmed metwally",style: TextStyle(fontSize: 18,color: Colors.black.withOpacity(.4)),),
+              child:Text("Build your career with ahmed metwally",style: TextStyle(fontSize: 18,color: Colors.black.withOpacity(.4)),),
             ),
-            trailing: Icon(FontAwesomeIcons.trash,color: Colors.black,size:30 ,),
+            trailing: const Icon(FontAwesomeIcons.trash,color: Colors.black,size:30 ,),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 20),

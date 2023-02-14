@@ -8,7 +8,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children:[
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children:const [
         Text("Notes",style: TextStyle(fontSize: 28),),
         CustomSearchIcon(),
       ]),
