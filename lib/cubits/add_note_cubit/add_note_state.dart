@@ -10,5 +10,4 @@ class AddNoteFailure extends AddNoteState {
  final String message;
 
   AddNoteFailure({required this.message});
-}//git commit -m "add validat to add bottom sheet,register adapter and generate cutbi
-//t"
+}//git commit -m "add validat to add bottom sheet,register adapter and generate cutbit"
