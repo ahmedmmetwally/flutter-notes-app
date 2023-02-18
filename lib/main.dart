@@ -7,10 +7,11 @@ import 'package:notes_app_bloc_local_database/models/note_model.dart';
 import 'package:notes_app_bloc_local_database/simple_bloc_observer.dart';
 import 'package:notes_app_bloc_local_database/views/notes_view.dart';
 
+
 void main() async{
   await Hive.initFlutter();
-  await Hive.openBox(KNoteBox);
   Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(KNoteBox);
   Bloc.observer=SimpleBlocObserver();
   runApp(const NotesApp());
 }

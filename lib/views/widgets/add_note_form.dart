@@ -1,16 +1,21 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app_bloc_local_database/constant.dart';
+import 'package:notes_app_bloc_local_database/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app_bloc_local_database/models/note_model.dart';
 import 'package:notes_app_bloc_local_database/views/widgets/custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
-  const AddNoteForm({Key? key}) : super(key: key);
+
+  const AddNoteForm({Key? key, }) : super(key: key);
 
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
+  bool isLoading=true;
   GlobalKey<FormState> form=GlobalKey();
   AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
   String? title,subtitle;
@@ -30,23 +35,33 @@ class _AddNoteFormState extends State<AddNoteForm> {
           },),
           Container(height: 20,),
           SizedBox(
-            height: 50,
+            height: 60,
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: (){
-                if( form.currentState!.validate()){
-                  form.currentState!.save();
-                }else{
-                  autovalidateMode=AutovalidateMode.always;
-                  setState(() {
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: ElevatedButton(
+                onPressed: (){
+                  if( form.currentState!.validate()){
+                    form.currentState!.save();
+                    final note=NoteModel(title: title!, subtitle: subtitle!, date: DateTime.now().toString(), color: Colors.red.value);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                  }else{
+                    autovalidateMode=AutovalidateMode.always;
+                    setState(() {
 
-                  });
+                    });
+                  }
+                }, //icon data for elevated button
+                child:BlocBuilder<AddNoteCubit,AddNoteState>(builder: (context,state){
+                 return (state is AddNoteLoadign)?  const SizedBox(height: 24,width: 25,child: CircularProgressIndicator(color: Colors.black,))
+                     :Text("Add",style: TextStyle(color: Colors.black),);
                 }
-              }, //icon data for elevated button
-              child: Text("Add",style: TextStyle(color: Colors.black),), //label text
-              style: ElevatedButton.styleFrom(
-                  primary: floatingColor
-                //elevated btton background color
+                ),
+                //label text
+                style: ElevatedButton.styleFrom(
+                    primary: floatingColor
+                  //elevated btton background color
+                ),
               ),
             ),
           ),

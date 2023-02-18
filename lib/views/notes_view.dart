@@ -15,14 +15,15 @@ class NotesView extends StatelessWidget {
               backgroundColor: floatingColor,
               onPressed: (){
                 showModalBottomSheet(
-                  shape: RoundedRectangleBorder(
+                  isScrollControlled: true,
+                  shape:const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(20),
                     ),
                   ),
                   context: context,
                   builder: (context) {
-                   return AddNoteButtonSheet();
+                   return const AddNoteButtonSheet();
                   },
                 );
               }

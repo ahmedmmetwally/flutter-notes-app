@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:notes_app_bloc_local_database/constant.dart';
 import 'package:notes_app_bloc_local_database/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app_bloc_local_database/views/widgets/add_note_form.dart';
-import 'package:notes_app_bloc_local_database/views/widgets/custom_text_field.dart';
+
 
 
 class AddNoteButtonSheet extends StatelessWidget {
@@ -13,20 +12,25 @@ class AddNoteButtonSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddNoteCubit,AddNoteState>(listener:(context,state){
-          if(state is AddNoteFailure){
-            print ("retry again");
-          }if(state is AddNoteSuccess){
-            Navigator.pop(context);
-          }
-        } ,builder: (context,state){
-          return  ModalProgressHUD(inAsyncCall: state is AddNoteLoadign ?true :false,
-              child: const AddNoteForm());
-        },),
-      ),
-    );
+    return BlocConsumer<AddNoteCubit,AddNoteState>(listener:(context,state){
+      if(state is AddNoteFailure){
+        print ("retry again");
+      }if(state is AddNoteSuccess){
+        Navigator.pop(context);
+      }
+    } ,builder: (context,state){
+      return BlocBuilder<AddNoteCubit,AddNoteState>(builder: (context,state){
+        return AbsorbPointer(
+          absorbing: state is AddNoteLoadign?true:false,
+          child:   Padding(
+            padding:EdgeInsets.only(top: 20,right: 10,left: 10,bottom: MediaQuery.of(context).viewInsets.bottom),
+            child:SingleChildScrollView(child: AddNoteForm()),
+          ),
+        );
+      }
+
+      );
+    },);
+
   }
 }

@@ -169,20 +169,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
-  dependencies:
-    dependency: "direct main"
-    description:
-      name: dependencies
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5"
-  disposables:
-    dependency: transitive
-    description:
-      name: disposables
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   fake_async:
     dependency: transitive
     description:
@@ -360,7 +346,7 @@ packages:
       name: modal_progress_hud_nsn
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.1.0-nullsafety-1"
   nested:
     dependency: transitive
     description:
@@ -480,13 +466,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.5"
   shelf:
     dependency: transitive
     description:
