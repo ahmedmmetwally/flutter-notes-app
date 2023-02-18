@@ -11,12 +11,9 @@ class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
 
   fetchAllNotes()async{
-    try{
+
       var noteBox=Hive.box<NoteModel>(KNoteBox);
        List<NoteModel> notes=noteBox.values.toList();
        emit(NoteSuccess(notes));
-    }catch(e){
-      emit(NoteFailure(message: e.toString()));
-    }
   }
 }
