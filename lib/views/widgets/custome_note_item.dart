@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app_bloc_local_database/cubits/note_cubit/note_cubit.dart';
 import 'package:notes_app_bloc_local_database/models/note_model.dart';
 import 'package:notes_app_bloc_local_database/views/edit_note_view.dart';
 
@@ -11,7 +13,7 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditNoteView()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>EditNoteView(note: note,)));
       },
       child: Container(margin: EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: Color(note.color)),
@@ -23,13 +25,16 @@ class NoteItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child:Text(note.subtitle,style: TextStyle(fontSize: 18,color: Colors.black.withOpacity(.4)),),
               ),
-              trailing: const Icon(FontAwesomeIcons.trash,color: Colors.black,size:30 ,),
+              trailing:  IconButton(onPressed: (){
+                note.delete();
+                BlocProvider.of<NoteCubit>(context).fetchAllNotes();
+              },
+                  icon: Icon(FontAwesomeIcons.trash,color: Colors.black,size:30 ,)),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Text(note.date,style: TextStyle(fontSize: 18,color: Colors.black.withOpacity(.4))),
             ),
-
           ],),
         ),),
     );

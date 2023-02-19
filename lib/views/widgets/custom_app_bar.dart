@@ -4,7 +4,8 @@ import 'package:notes_app_bloc_local_database/views/widgets/custom_search_icon.d
 class CustomAppBar extends StatelessWidget {
   final IconData icon;
   final String title;
-  const CustomAppBar({Key? key,required this.icon,required this.title}) : super(key: key);
+  final void Function()? onPressed;
+  const CustomAppBar({Key? key,required this.icon,required this.title,this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
         Text(title,style: TextStyle(fontSize: 28),),
-        CustomSearchIcon(icon: icon,),
+        CustomSearchIcon(icon: icon,onPressed: onPressed,),
       ]),
     );
   }
