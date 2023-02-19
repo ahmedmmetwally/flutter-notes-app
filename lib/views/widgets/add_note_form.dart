@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app_bloc_local_database/constant.dart';
 import 'package:notes_app_bloc_local_database/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app_bloc_local_database/models/note_model.dart';
+import 'package:notes_app_bloc_local_database/views/widgets/colors_list_view.dart';
 import 'package:notes_app_bloc_local_database/views/widgets/custom_text_field.dart';
 import 'package:intl/intl.dart';
 
@@ -34,6 +35,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
           CustomTextField(hint: "description",maxLines: 5,onSaved: (value){
             subtitle=value;
           },),
+          Container(height: 20,),
+          ColorsListView(),
           Container(height: 20,),
           SizedBox(
             height: 60,
@@ -74,4 +77,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
+
+
 
